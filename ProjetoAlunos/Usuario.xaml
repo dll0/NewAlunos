@@ -1,0 +1,30 @@
+﻿<Window x:Class="ProjetoAlunos.Usuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetoAlunos"
+        mc:Ignorable="d"
+        Title="Cadastro de Usuário" Height="130" Width="300" ResizeMode="NoResize" Icon="Arquivos/logo.png" WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="3" Height="90">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="85"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,0,7,0" HorizontalAlignment="Center" VerticalAlignment="Center">Usuário:</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,7,0" HorizontalAlignment="Center" VerticalAlignment="Center">Senha:</TextBlock>
+
+        <TextBox Name="tbUser" Grid.Column="1" Grid.Row="0" Margin="7,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="175" GotFocus="tbUser_GotFocus" LostFocus="tbUser_LostFocus" ToolTip="MAX: 8 CARACTERES"></TextBox>
+        <PasswordBox Name="tbPass" Grid.Column="1" Grid.Row="1" Margin="7,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="175" LostFocus="tbPass_LostFocus" ToolTip="MAX: 5 NUMEROS"></PasswordBox>
+
+        <Button Grid.Column="1" Grid.Row="2" Width="75" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,22,0" Content="Registrar" Click="bRegister_Click" />
+    </Grid>
+</Window>

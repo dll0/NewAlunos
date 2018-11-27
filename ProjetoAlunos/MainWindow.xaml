@@ -1,0 +1,14 @@
+﻿<Window x:Class="ProjetoAlunos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetoAlunos"
+        mc:Ignorable="d"
+        Title="Sistema Gerenciador Acadêmico [SGA]" Height="450" Width="400" ResizeMode="NoResize" Icon="Arquivos/logo.png" WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="5">
+        <Image Source="Arquivos\logo.png" Margin="20" Width="300"/>
+        <Button Content="Inicializar" Width="125" Height="30" Margin="0,125,0,0" Click="B_Inicializa"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,80,1,0"><Run Text="Matheus Luís de Oliveira - 0251102"/></TextBlock>
+    </StackPanel>
+</Window>
