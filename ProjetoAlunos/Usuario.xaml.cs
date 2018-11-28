@@ -16,11 +16,12 @@ using System.Windows.Shapes;
 namespace ProjetoAlunos {
     public partial class Usuario : Window {
         Oracle oracle = new Oracle();
-        StringManipulation manipulation = new StringManipulation();
+        StringManipulation strManipulation = new StringManipulation();
+        EventManipulation evtManipulation = new EventManipulation();
 
         private string userNameTB = "Nome de usuário obrigatório!";
         private string maxChar = "Máximo de 8 caracteres!";
-        private string onlyAlpha = "Somente caracteres do alfabeto";
+        private string onlyAlpha = "Somente caracteres do alfabeto!";
         private bool userGotFocused = false;
         private bool isCommonText;
 
@@ -32,100 +33,25 @@ namespace ProjetoAlunos {
 
         private void tbUser_GotFocus(object sender, RoutedEventArgs e) {
             userGotFocused = true;
-            string tbString = tbUser.Text.ToString();
-            string tbStringNoSpace = tbString.Replace(" ", String.Empty);
+            string[] commons = { userNameTB };
+            string[] messages = { "O nome de usuário", "não atende aos requisitos" };
 
-            if (tbStringNoSpace.Equals(String.Empty)) {
-                tbUser.Text = userNameTB;
-            } else if (tbString.Equals(userNameTB)) {
-                tbUser.Text = String.Empty;
-            }
+            evtManipulation.Focus(common: commons, gotOrLost: "G", box: tbUser, message: messages);
         }
 
         private void tbUser_LostFocus(object sender, RoutedEventArgs e) {
-            string tbString = tbUser.Text.ToString();
-            string tbStringNoSpace = tbString.Replace(" ", String.Empty);
-            bool haveOnlyAlpha = Regex.IsMatch(tbString, @"^[a-zA-Z]+$");
+            string[] commons = { userNameTB, maxChar, onlyAlpha, "O nome de usuário", "não atende aos requisitos" };
+            string[] messages = { "O nome de usuário", "não atende aos requisitos" };
 
-            if (tbStringNoSpace.Equals(String.Empty)) {
-                tbUser.Text = userNameTB;
-            } else if (tbString.Length > 8 
-                    && !tbString.Equals(userNameTB) 
-                    && !tbString.Equals(maxChar)
-                    && !tbString.Equals(onlyAlpha)){
-                MessageBox.Show($"{maxChar}{Environment.NewLine}O nome de usuário '{tbString}' não atende aos requisitos");
-                tbUser.Text = maxChar;
-                Task.Delay(100).ContinueWith(_ => { Application.Current.Dispatcher.Invoke(new Action(() => {
-                        tbUser.Focus();
-                        tbUser.SelectAll();
-                    }));
-                });
-            } else if (!haveOnlyAlpha
-                    && !tbString.Equals(onlyAlpha)) {
-                tbUser.Text = onlyAlpha;
-                int position = 0;
-                List<string> changes = new List<string>();
-
-                foreach (char letter in tbString) {
-                    position++;
-                    if (!Regex.IsMatch(Convert.ToString(letter), @"^[a-zA-Z]+$")) {
-                        changes.Add($"{Convert.ToString(position)}: {Convert.ToString(letter)}; ");
-                    }
-                }
-
-                string changesToDo = string.Join(" ", changes);
-
-                MessageBox.Show($"O nome de usuário deve conter apenas letras [A-Z]{Environment.NewLine}" +
-                                $"O nome de usuário '{tbString}' não atende aos requisitos{Environment.NewLine}" +
-                                $"{Environment.NewLine}" +
-                                $"Caracteres invalidos em suas posições:" +
-                                $"{Environment.NewLine}{changesToDo}");
-                Task.Delay(100).ContinueWith(_ => {
-                    Application.Current.Dispatcher.Invoke(new Action(() => {
-                        tbUser.Focus();
-                        tbUser.SelectAll();
-                    }));
-                });
-            }
+            evtManipulation.Focus(common: commons, gotOrLost: "L", box: tbUser,
+                mask: new Regex(@"^[a-zA-Z]+$"), showErrors: true, message: messages);
         }
 
-
         private void tbPass_LostFocus(object sender, RoutedEventArgs e) {
-            string tbString = tbPass.Password.ToString();
-            string tbStringNoSpace = tbString.Replace(" ", String.Empty);
-            bool haveOnlyNumeric = Regex.IsMatch(tbString, @"^[0-9]+$");
-            bool isBlank = tbStringNoSpace.Equals(String.Empty);
+            string[] messages = { "A senha", "não atende aos requisitos", "Deve possuir até 5 números ou ser nula" };
 
-            if (tbString.Length > 5) {
-                MessageBox.Show($"A senha '{tbString}' não atende aos requisitos" +
-                                $"{Environment.NewLine}Deve possuir até 5 números ou ser nula");
-                Task.Delay(100).ContinueWith(_ => {
-                    Application.Current.Dispatcher.Invoke(new Action(() => {
-                        tbPass.Focus();
-                        tbPass.SelectAll();
-                    }));
-                });
-            } else if (!haveOnlyNumeric && !isBlank) {
-                List<char> changes = new List<char>();
-
-                foreach (char letter in tbString) {
-                    if (!Regex.IsMatch(letter.ToString(), @"^[0-9]+$")) {
-                        changes.Add(letter);
-                    }
-                }
-
-                string changesToDo = string.Join("; ", changes);
-
-                MessageBox.Show($"A senha deve conter apenas números [0-9]" +
-                                $"{Environment.NewLine}Os seguintes caracteres inválidos foram encontrados:" +
-                                $"{Environment.NewLine}{changesToDo};");
-                Task.Delay(100).ContinueWith(_ => {
-                    Application.Current.Dispatcher.Invoke(new Action(() => {
-                        tbPass.Focus();
-                        tbPass.SelectAll();
-                    }));
-                });
-            }
+            evtManipulation.Focus(gotOrLost: "L", passBox: tbPass, mask: new Regex(@"^[0-9]+$"), message: messages,
+                showErrors: true);
         }
 
         private void bRegister_Click(object sender, RoutedEventArgs e) {
@@ -135,7 +61,7 @@ namespace ProjetoAlunos {
                     || tb.Equals(maxChar)
                     || tb.Equals(onlyAlpha);
 
-            string user = manipulation.Capitalize(tb);
+            string user = strManipulation.Capitalize(tb);
             string password = tbPass.Password.ToString();
             bool wasInserted = false;
 
