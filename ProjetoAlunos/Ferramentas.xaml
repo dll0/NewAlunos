@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Name="bancoDeDados" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Foreground="LightGray">Banco de Dados</TextBlock>
-        <TextBlock Name="backup" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Foreground="LightGray">Backup</TextBlock>
+        <TextBlock Name="backup" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Foreground="LightGray">Manutenção</TextBlock>
         <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Foreground="LightGray">Teste</TextBlock>
         <TextBlock Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Foreground="LightGray">Teste</TextBlock>
 
@@ -67,6 +67,25 @@
             </Button.Style>
         </Button>
         <Button Click="B_VerificaLogin" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="3" Margin="2" Content="Verificar login" Cursor="Hand">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock TextDecorations="Underline">
+                <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Foreground" Value="White" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="DarkGray" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Click="B_MudaSenha" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" Margin="2" Content="Mudar senha" Cursor="Hand">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <TextBlock TextDecorations="Underline">

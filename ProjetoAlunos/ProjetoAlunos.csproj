@@ -73,6 +73,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entidades\Aluno.cs" />
     <Compile Include="Ferramentas.xaml.cs">
       <DependentUpon>Ferramentas.xaml</DependentUpon>
     </Compile>

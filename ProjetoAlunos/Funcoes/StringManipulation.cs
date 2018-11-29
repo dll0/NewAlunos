@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ProjetoAlunos
@@ -20,6 +21,10 @@ namespace ProjetoAlunos
             }
 
             return result;
+        }
+
+        public bool Mask (Regex mask, string str) {
+            return mask.IsMatch(str);
         }
     }
 }

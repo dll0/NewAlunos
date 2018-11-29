@@ -46,7 +46,7 @@ namespace ProjetoAlunos {
             }
         }
 
-        public List<string> Query(string query) {
+        public object Query(string query) {
             OracleCommand command = new OracleCommand(query, connection);
             List<string> queries = new List<string>();
 
@@ -54,19 +54,23 @@ namespace ProjetoAlunos {
                 command.CommandType = CommandType.Text;
                 OracleDataReader dataReader = command.ExecuteReader();
 
-                while (dataReader.Read()) {
-                    queries.Add(dataReader["nome"].ToString());
-                    queries.Add(dataReader["senha"].ToString());
-                }
+                if (dataReader.HasRows) {
+                    while (dataReader.Read()) {
+                        queries.Add(dataReader["nome"].ToString());
+                        queries.Add(dataReader["senha"].ToString());
+                    }
 
-                return queries;
+                    return queries;
+                } else {
+                    return "-1";
+                }
             }
             catch {
-                return queries = new List<string> { "-1" };
+                return "-1";
             }
         }
 
-        public bool Insert(string sql) {
+        public bool InsertOrUpdate(string sql) {
             OracleCommand command = new OracleCommand(sql, connection);
 
             try {

@@ -35,31 +35,42 @@ namespace ProjetoAlunos {
         }
 
         private void B_VerificaLogin(object sender, RoutedEventArgs e) {
-            List<string> queryReturn = oracle.Query("SELECT nome, senha FROM usuario");
-            bool querySuccess;
+            object queryReturn = oracle.Query("SELECT nome, senha FROM usuario");
+            bool querySuccess = false;
 
             string user = "", password = "";
 
-            int i = 0;
-            foreach (string s in queryReturn) {
-                if (i == 0)
-                    user = s;
-                else
-                    password = s;
-
-                i++;
-            }
-
-            if (password.Replace(" ", String.Empty).Equals(String.Empty)) {
-                password = "EM BRANCO";
-            }
-
-            if (!queryReturn.Equals("-1"))
+            if (!queryReturn.ToString().Equals("-1")) {
+                IList<string> query = (IList<string>)queryReturn;
                 querySuccess = true;
-            else
-                querySuccess = false;
 
+                int i = 0;
+                foreach (string s in query) {
+                    if (i == 0)
+                        user = s;
+                    else
+                        password = s;
+
+                    i++;
+                }
+            } else {
+                querySuccess = false;
+            }
+                
             evt.SuccessBox($"Nome de usuário: {user}{Environment.NewLine}Senha: {password}", "Usuário não registrado", querySuccess);
+        }
+
+        private void B_MudaSenha(object sender, RoutedEventArgs e) {
+            string password = "123456";
+
+            while (password.Length > 5) {
+                MessageBox.Show("ATENÇÃO! Não pode ter mais que 5 digitos numéricos!");
+                password = Microsoft.VisualBasic.Interaction.InputBox("Digite a nova senha:", "Redefinir senha", "12345");
+            }
+            
+            bool wasUpdated = oracle.InsertOrUpdate($"UPDATE usuario SET senha = {password}");
+
+            evt.SuccessBox("Senha alterada", "Senha não alterada", wasUpdated);
         }
     }
 }

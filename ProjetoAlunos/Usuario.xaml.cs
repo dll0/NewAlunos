@@ -65,13 +65,13 @@ namespace ProjetoAlunos {
             string password = tbPass.Password.ToString();
             bool wasInserted = false;
 
-            List<String> userRegistered = oracle.Query("SELECT nome FROM usuario");
+            object userRegistered = oracle.Query("SELECT nome FROM usuario");
             bool isUserRegistered = !userRegistered.Equals("-1");
 
             if (!isUserRegistered
                     && userGotFocused
                     && !isCommonText) {
-                wasInserted = oracle.Insert($"INSERT INTO usuario (nome, senha) VALUES ('{user}', '{password}')");
+                wasInserted = oracle.InsertOrUpdate($"INSERT INTO usuario (nome, senha) VALUES ('{user}', '{password}')");
             }
 
             if (wasInserted) {
