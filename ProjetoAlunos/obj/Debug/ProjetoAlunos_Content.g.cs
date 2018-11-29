@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("arquivos/dropandcria.sql")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("arquivos/default.sql")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("arquivos/script.sql")]
 
 

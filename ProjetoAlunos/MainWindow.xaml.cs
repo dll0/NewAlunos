@@ -52,5 +52,13 @@ namespace ProjetoAlunos {
 
             //oracle.Close();
         }
+
+        private void B_Secreto(object sender, MouseButtonEventArgs e) {
+            Ferramentas ferramentas = new Ferramentas();
+            this.Hide();
+            Task.Delay(15);
+            ferramentas.ShowDialog();
+            this.Show();
+        }
     }
 }

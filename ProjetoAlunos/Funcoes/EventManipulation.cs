@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 
 namespace ProjetoAlunos {
     class EventManipulation {
-        public void Focus(string gotOrLost, TextBox box = null, PasswordBox passBox = null,
+        public void Validate(string gotOrLost, TextBox box = null, PasswordBox passBox = null,
                             Regex mask = null, bool showErrors = false, string[] common = null, string[] message = null) {
 
             if (box != null) {
@@ -129,6 +129,13 @@ namespace ProjetoAlunos {
                     }));
                 });
             }
+        }
+
+        public void SuccessBox (string success, string failed, bool wasSuccessful) {
+            if (wasSuccessful)
+                MessageBox.Show(success);
+            else
+                MessageBox.Show(failed);
         }
     }
 }

@@ -16,8 +16,8 @@ using System.Windows.Shapes;
 namespace ProjetoAlunos {
     public partial class Usuario : Window {
         Oracle oracle = new Oracle();
-        StringManipulation strManipulation = new StringManipulation();
-        EventManipulation evtManipulation = new EventManipulation();
+        StringManipulation str = new StringManipulation();
+        EventManipulation evt = new EventManipulation();
 
         private string userNameTB = "Nome de usuário obrigatório!";
         private string maxChar = "Máximo de 8 caracteres!";
@@ -36,21 +36,21 @@ namespace ProjetoAlunos {
             string[] commons = { userNameTB };
             string[] messages = { "O nome de usuário", "não atende aos requisitos" };
 
-            evtManipulation.Focus(common: commons, gotOrLost: "G", box: tbUser, message: messages);
+            evt.Validate(common: commons, gotOrLost: "G", box: tbUser, message: messages);
         }
 
         private void tbUser_LostFocus(object sender, RoutedEventArgs e) {
             string[] commons = { userNameTB, maxChar, onlyAlpha, "O nome de usuário", "não atende aos requisitos" };
             string[] messages = { "O nome de usuário", "não atende aos requisitos" };
 
-            evtManipulation.Focus(common: commons, gotOrLost: "L", box: tbUser,
+            evt.Validate(common: commons, gotOrLost: "L", box: tbUser,
                 mask: new Regex(@"^[a-zA-Z]+$"), showErrors: true, message: messages);
         }
 
         private void tbPass_LostFocus(object sender, RoutedEventArgs e) {
             string[] messages = { "A senha", "não atende aos requisitos", "Deve possuir até 5 números ou ser nula" };
 
-            evtManipulation.Focus(gotOrLost: "L", passBox: tbPass, mask: new Regex(@"^[0-9]+$"), message: messages,
+            evt.Validate(gotOrLost: "L", passBox: tbPass, mask: new Regex(@"^[0-9]+$"), message: messages,
                 showErrors: true);
         }
 
@@ -61,11 +61,11 @@ namespace ProjetoAlunos {
                     || tb.Equals(maxChar)
                     || tb.Equals(onlyAlpha);
 
-            string user = strManipulation.Capitalize(tb);
+            string user = str.Capitalize(tb);
             string password = tbPass.Password.ToString();
             bool wasInserted = false;
 
-            string userRegistered = oracle.Query("SELECT nome FROM usuario", "S", false);
+            List<String> userRegistered = oracle.Query("SELECT nome FROM usuario");
             bool isUserRegistered = !userRegistered.Equals("-1");
 
             if (!isUserRegistered

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Sistema Gerenciador Acadêmico [SGA]" Height="450" Width="400" ResizeMode="NoResize" Icon="Arquivos/logo.png" WindowStartupLocation="CenterScreen">
     <StackPanel Margin="5">
-        <Image Source="Arquivos\logo.png" Margin="20" Width="300"/>
+        <Image Source="Arquivos\logo.png" Margin="20" Width="300" MouseLeftButtonDown="B_Secreto" ToolTip="Clique para ferramentas de debug e teste!"/>
         <Button Content="Inicializar" Width="125" Height="30" Margin="0,125,0,0" Click="B_Inicializa"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,80,1,0"><Run Text="Matheus Luís de Oliveira - 0251102"/></TextBlock>
     </StackPanel>

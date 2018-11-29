@@ -3,6 +3,7 @@ using System.Windows;
 using Oracle.ManagedDataAccess.Client;
 using System.IO;
 using System.Data;
+using System.Collections.Generic;
 
 namespace ProjetoAlunos {
     class Oracle {
@@ -45,41 +46,23 @@ namespace ProjetoAlunos {
             }
         }
 
-        public string Query(string query, string returnType, bool hasMultipleResult) {
+        public List<string> Query(string query) {
             OracleCommand command = new OracleCommand(query, connection);
+            List<string> queries = new List<string>();
 
-            if (returnType.Equals("S")) {
-                /* String */
-                try {
-                    command.CommandType = CommandType.Text;
-                    OracleDataReader dataReader = command.ExecuteReader();
-                    dataReader.Read();
-                    if (dataReader.HasRows) {
-                        return dataReader.GetString(0);
-                    } else {
-                        return "-1";
-                    }
+            try {
+                command.CommandType = CommandType.Text;
+                OracleDataReader dataReader = command.ExecuteReader();
+
+                while (dataReader.Read()) {
+                    queries.Add(dataReader["nome"].ToString());
+                    queries.Add(dataReader["senha"].ToString());
                 }
-                catch {
-                    return "-1";
-                }
-            } else if (returnType.Equals("I")) {
-                /* Integer */
-                try {
-                    command.CommandType = CommandType.Text;
-                    OracleDataReader dataReader = command.ExecuteReader();
-                    dataReader.Read();
-                    if (dataReader.HasRows) {
-                        return Convert.ToString(dataReader.GetInt32(0));
-                    } else {
-                        return "-1";
-                    }
-                }
-                catch {
-                    return "-1";
-                }
-            } else {
-                return "-1";
+
+                return queries;
+            }
+            catch {
+                return queries = new List<string> { "-1" };
             }
         }
 

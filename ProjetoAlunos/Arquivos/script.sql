@@ -5,17 +5,11 @@ BEGIN
                                     DROP CONSTRAINT fk_cidade';
             EXECUTE IMMEDIATE 'ALTER TABLE registro_academico
                                     DROP CONSTRAINT fk_regacad_aluno
-                                    DROP CONSTRAINT fk_regacad_curso
-                                    DROP CONSTRAINT fk_regacad_curso_cod
-                                    DROP CONSTRAINT fk_regacad_aluno_cod';
+                                    DROP CONSTRAINT fk_regacad_curso';
             EXECUTE IMMEDIATE 'ALTER TABLE registro_academico_disciplina
-                                    DROP CONSTRAINT fk_regacad_disc_cod
-                                    DROP CONSTRAINT fk_regacad_reg_cod
                                     DROP CONSTRAINT fk_regacad_disc
                                     DROP CONSTRAINT fk_regacad_reg';
             EXECUTE IMMEDIATE 'ALTER TABLE nota
-                                    DROP CONSTRAINT fk_regacad_nota_cod
-                                    DROP CONSTRAINT fk_regacadnota_disc_cod
                                     DROP CONSTRAINT fk_regacadnota_disc
                                     DROP CONSTRAINT fk_regacad_nota';
         EXCEPTION
@@ -133,8 +127,6 @@ BEGIN
         cod_aluno           INT DEFAULT NULL,
         cod_curso           INT DEFAULT NULL,
         PRIMARY KEY ( cod ),
-        CONSTRAINT fk_regacad_aluno_cod UNIQUE ( cod_aluno ),
-        CONSTRAINT fk_regacad_curso_cod UNIQUE ( cod_curso ),
         CONSTRAINT fk_regacad_aluno FOREIGN KEY ( cod_aluno )
             REFERENCES aluno ( codigo ),
         CONSTRAINT fk_regacad_curso FOREIGN KEY ( cod_curso )
@@ -157,8 +149,6 @@ BEGIN
         cod_reg_academico   INT DEFAULT NULL,
         cod_disciplina      INT DEFAULT NULL,
         PRIMARY KEY ( cod ),
-        CONSTRAINT fk_regacad_disc_cod UNIQUE ( cod_disciplina ),
-        CONSTRAINT fk_regacad_reg_cod UNIQUE ( cod_reg_academico ),
         CONSTRAINT fk_regacad_disc FOREIGN KEY ( cod_disciplina )
             REFERENCES disciplina ( cod ),
         CONSTRAINT fk_regacad_reg FOREIGN KEY ( cod_reg_academico )
@@ -185,8 +175,6 @@ BEGIN
         nota3           DECIMAL DEFAULT NULL,
         media           DECIMAL DEFAULT NULL,
         PRIMARY KEY ( cod ),
-        CONSTRAINT fk_regacad_nota_cod UNIQUE ( codregacad ),
-        CONSTRAINT fk_regacadnota_disc_cod UNIQUE ( coddisciplina ),
         CONSTRAINT fk_regacadnota_disc FOREIGN KEY ( coddisciplina )
             REFERENCES disciplina ( cod ),
         CONSTRAINT fk_regacad_nota FOREIGN KEY ( codregacad )

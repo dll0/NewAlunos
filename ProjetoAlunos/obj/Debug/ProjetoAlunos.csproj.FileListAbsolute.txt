@@ -37,3 +37,5 @@ C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\ProjetoAlunos.csproj.C
 C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\ProjetoAlunos.csproj.CopyComplete
 C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\ProjetoAlunos.exe
 C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\ProjetoAlunos.pdb
+C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\Ferramentas.g.cs
+C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\Ferramentas.baml

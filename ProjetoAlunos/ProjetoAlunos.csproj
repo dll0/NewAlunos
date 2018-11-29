@@ -57,6 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Ferramentas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Usuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -68,6 +72,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ferramentas.xaml.cs">
+      <DependentUpon>Ferramentas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Funcoes\EventManipulation.cs" />
     <Compile Include="Funcoes\StringManipulation.cs" />
@@ -107,7 +114,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Arquivos\DropANDCria.sql" />
+    <Content Include="Arquivos\default.sql" />
+    <Content Include="Arquivos\script.sql" />
     <Resource Include="Arquivos\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
