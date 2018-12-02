@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using System.IO;
 using System.Data;
 using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace ProjetoAlunos {
     class Oracle {
@@ -82,6 +83,16 @@ namespace ProjetoAlunos {
             catch {
                 return false;
             }
+        }
+
+        public void BindToDataGrid(DataGrid grid, string query) {
+            OracleCommand cmd = new OracleCommand(query, connection);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataTable dt = new DataTable("Alunos");
+
+            da.Fill(dt);
+
+            grid.ItemsSource = dt.DefaultView;
         }
     }
 }

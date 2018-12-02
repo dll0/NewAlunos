@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ProjetoAlunos.Entidades {
+namespace ProjetoAlunos {
     class Aluno {
         StringManipulation str = new StringManipulation();
 

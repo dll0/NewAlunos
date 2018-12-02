@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TelaAlunos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Usuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,11 +78,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entidades\Aluno.cs" />
+    <Compile Include="Entidades\Curso.cs" />
     <Compile Include="Ferramentas.xaml.cs">
       <DependentUpon>Ferramentas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Funcoes\EventManipulation.cs" />
     <Compile Include="Funcoes\StringManipulation.cs" />
+    <Compile Include="TelaAlunos.xaml.cs">
+      <DependentUpon>TelaAlunos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Usuario.xaml.cs">
       <DependentUpon>Usuario.xaml</DependentUpon>
     </Compile>

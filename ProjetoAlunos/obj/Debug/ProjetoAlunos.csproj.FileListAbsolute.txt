@@ -39,3 +39,5 @@ C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\ProjetoAlunos.exe
 C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\ProjetoAlunos.pdb
 C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\Ferramentas.g.cs
 C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\Ferramentas.baml
+C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\TelaAlunos.g.cs
+C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\TelaAlunos.baml

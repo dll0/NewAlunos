@@ -22,35 +22,13 @@ namespace ProjetoAlunos {
 
         private void B_Inicializa(object sender, RoutedEventArgs e) {
             Oracle oracle = new Oracle();
-            bool isConnected = oracle.Connect();
+            oracle.Connect();
 
             Usuario usuario = new Usuario();
-            usuario.ShowDialog();
+            //usuario.ShowDialog();
 
-            /*if (isConnected) {
-                MessageBox.Show($"Conectado ao Oracle {oracle.getVersao()}");
-
-                string query = oracle.Query("SELECT nome FROM usuario", "S", false);
-                bool isFirstTime = query.Equals("-1");
-                if (isFirstTime) {
-                    bool wasExecuted = oracle.Script("C:\\Users\\Matheus\\Documents\\GitHub\\" +
-                                        "ProjetoAlunos\\ProjetoAlunos\\Arquivos\\DropANDCria.sql");
-
-                    if (wasExecuted) {
-                        MessageBox.Show("Script executado, todas as tabelas foram criadas");
-                        */
-
-            /* } else {
-                 MessageBox.Show("Script não executado");
-             }
-         } else {
-             MessageBox.Show("Usuário já existe");
-         }
-     }  else {
-         MessageBox.Show("Não conectado");
-     }*/
-
-            //oracle.Close();
+            TelaAlunos telaAlunos = new TelaAlunos();
+            telaAlunos.ShowDialog();
         }
 
         private void B_Secreto(object sender, MouseButtonEventArgs e) {
