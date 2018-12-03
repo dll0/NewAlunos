@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 namespace ProjetoAlunos {
     public partial class TelaAlunos : Window {
         Oracle oracle = new Oracle();
+        CadastroAluno cadastroAluno;
 
         List<String> tables = new List<string>();
 
@@ -111,6 +112,25 @@ namespace ProjetoAlunos {
             string text = CB_Table.SelectedItem.ToString();
 
             Bind(text);
+        }
+
+        private void B_Inserir(object sender, RoutedEventArgs e) {
+            Hide();
+            cadastroAluno = new CadastroAluno("U");
+            cadastroAluno.ShowDialog();
+            Show();
+        }
+
+        private void B_Deletar(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void B_Modificar(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void B_Mostrar(object sender, RoutedEventArgs e) {
+
         }
     }
 }

@@ -41,3 +41,6 @@ C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\Ferramentas.g.cs
 C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\Ferramentas.baml
 C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\TelaAlunos.g.cs
 C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\TelaAlunos.baml
+C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\CadastroAluno.g.cs
+C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\CadastroAluno.baml
+C:\Users\Matheus\github\NewAlunos\ProjetoAlunos\obj\Debug\ProjetoAlunos.csprojAssemblyReference.cache

@@ -35,7 +35,7 @@ namespace ProjetoAlunos {
         }
 
         private void B_VerificaLogin(object sender, RoutedEventArgs e) {
-            object queryReturn = oracle.Query("SELECT nome, senha FROM usuario");
+            object queryReturn = oracle.Query("SELECT nome, senha FROM usuario", "nome", "senha");
             bool querySuccess = false;
 
             string user = "", password = "";

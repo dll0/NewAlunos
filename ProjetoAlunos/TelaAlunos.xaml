@@ -18,7 +18,24 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" Grid.Row="1">
+            <TextBlock Text="Carregar tabela:" Margin="3,0,3,2" HorizontalAlignment="Center"/>
             <ComboBox Name="CB_Table" Margin="3,0,3,5" SelectionChanged="CB_Table_SelectionChanged"></ComboBox>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85"></ColumnDefinition>
+                    <ColumnDefinition Width="85"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0" Margin="2" Click="B_Inserir">Inserir</Button>
+                <Button Grid.Row="0" Grid.Column="1" Margin="2" Click="B_Deletar">Deletar</Button>
+                <Button Grid.Row="1" Grid.Column="0" Margin="2" Click="B_Modificar">Modificar</Button>
+                <Button Grid.Row="1" Grid.Column="1" Margin="2" Click="B_Mostrar">Mostrar</Button>
+            </Grid>
         </StackPanel>
         <DataGrid Name="MyDataGrid" Grid.Column="1" Grid.Row="1" />
     </Grid>

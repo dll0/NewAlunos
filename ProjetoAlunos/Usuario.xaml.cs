@@ -36,7 +36,8 @@ namespace ProjetoAlunos {
             string[] commons = { userNameTB };
             string[] messages = { "O nome de usuário", "não atende aos requisitos" };
 
-            evt.Validate(common: commons, gotOrLost: "G", box: tbUser, message: messages);
+            evt.Validate(common: commons, gotOrLost: "G", box: tbUser, message: messages,
+                length: 8);
         }
 
         private void tbUser_LostFocus(object sender, RoutedEventArgs e) {
@@ -44,14 +45,15 @@ namespace ProjetoAlunos {
             string[] messages = { "O nome de usuário", "não atende aos requisitos" };
 
             evt.Validate(common: commons, gotOrLost: "L", box: tbUser,
-                mask: new Regex(@"^[a-zA-Z]+$"), showErrors: true, message: messages);
+                mask: new Regex(@"^[a-zA-Z]+$"), showErrors: true, message: messages,
+                length: 8);
         }
 
         private void tbPass_LostFocus(object sender, RoutedEventArgs e) {
             string[] messages = { "A senha", "não atende aos requisitos", "Deve possuir até 5 números ou ser nula" };
 
             evt.Validate(gotOrLost: "L", passBox: tbPass, mask: new Regex(@"^[0-9]+$"), message: messages,
-                showErrors: true);
+                showErrors: true, length: 5);
         }
 
         private void bRegister_Click(object sender, RoutedEventArgs e) {
@@ -65,7 +67,7 @@ namespace ProjetoAlunos {
             string password = tbPass.Password.ToString();
             bool wasInserted = false;
 
-            object userRegistered = oracle.Query("SELECT nome FROM usuario");
+            object userRegistered = oracle.Query("SELECT nome FROM usuario", "nome");
             bool isUserRegistered = !userRegistered.Equals("-1");
 
             if (!isUserRegistered

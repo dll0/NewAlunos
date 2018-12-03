@@ -47,7 +47,7 @@ namespace ProjetoAlunos {
             }
         }
 
-        public object Query(string query) {
+        public object Query(string query, string column1, string column2 = null) {
             OracleCommand command = new OracleCommand(query, connection);
             List<string> queries = new List<string>();
 
@@ -57,8 +57,9 @@ namespace ProjetoAlunos {
 
                 if (dataReader.HasRows) {
                     while (dataReader.Read()) {
-                        queries.Add(dataReader["nome"].ToString());
-                        queries.Add(dataReader["senha"].ToString());
+                        queries.Add(dataReader[column1].ToString());
+                        if (column2 != null)
+                            queries.Add(dataReader[column2].ToString());
                     }
 
                     return queries;
