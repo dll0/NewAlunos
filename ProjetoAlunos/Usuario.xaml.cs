@@ -37,7 +37,7 @@ namespace ProjetoAlunos {
             string[] messages = { "O nome de usuário", "não atende aos requisitos" };
 
             evt.Validate(common: commons, gotOrLost: "G", box: tbUser, message: messages,
-                length: 8);
+                length: 8, showErrors: true);
         }
 
         private void tbUser_LostFocus(object sender, RoutedEventArgs e) {

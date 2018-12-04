@@ -17,9 +17,16 @@ using System.Windows.Shapes;
 namespace ProjetoAlunos {
     public partial class TelaAlunos : Window {
         Oracle oracle = new Oracle();
-        CadastroAluno cadastroAluno;
 
         List<String> tables = new List<string>();
+
+        string alunos = "Alunos";
+        string cidades = "Cidades";
+        string cursos = "Cursos";
+        string disciplinas = "Disciplinas";
+        string regAcad = "Registro Acadêmico";
+        string regAcadDisc = "Reg. Acad. por Disciplina";
+        //string notas = "Notas";
 
         public TelaAlunos() {
             InitializeComponent();
@@ -46,7 +53,7 @@ namespace ProjetoAlunos {
             string query = String.Empty;
             string text = CB_Table.SelectedItem.ToString();
 
-            if (type.Equals("Alunos")) {
+            if (type.Equals(alunos)) {
                 query = "SELECT " +
                             "a.codigo, " +
                             "a.nome, " +
@@ -56,25 +63,25 @@ namespace ProjetoAlunos {
                             "TO_CHAR(a.datanascimento, 'DD/MM/YYYY') nascimento " +
                         "FROM aluno a " +
                         "INNER JOIN cidade b ON a.codcidade = b.codigo";
-            } else if (type.Equals("Cidades")) {
+            } else if (type.Equals(cidades)) {
                 query = "SELECT " +
                             "codigo, " +
                             "nome, " +
                             "uf estado " +
                         "FROM cidade";
-            } else if (type.Equals("Cursos")) {
+            } else if (type.Equals(cursos)) {
                 query = "SELECT cod codigo, " +
                             "nome, " +
                             "TO_CHAR(datainicio, 'DD/MM/YYYY') inicio, " +
                             "cargahoraria||' horas' carga " +
                         "FROM curso";
-            } else if (type.Equals("Disciplinas")) {
+            } else if (type.Equals(disciplinas)) {
                 query = "SELECT " +
                             "cod codigo, " +
                             "nome, " +
                             "valor " +
                         "FROM disciplina";
-            } else if (type.Equals("Registro Acadêmico")) {
+            } else if (type.Equals(regAcad)) {
                 query = "SELECT " +
                             "a.cod codigo, " +
                             "a.numero_matricula matricula, " +
@@ -83,7 +90,7 @@ namespace ProjetoAlunos {
                         "FROM registro_academico a " +
                         "INNER JOIN aluno b ON a.cod_aluno = b.codigo " +
                         "INNER JOIN curso c ON a.cod_curso = c.cod";
-            } else if (type.Equals("Reg. Acad. por Disciplina")) {
+            } else if (type.Equals(regAcadDisc)) {
                 query = "SELECT " +
                             "a.cod codigo, " +
                             "a.cod_reg_academico||' - '||b.numero_matricula matricula, " +
@@ -115,22 +122,40 @@ namespace ProjetoAlunos {
         }
 
         private void B_Inserir(object sender, RoutedEventArgs e) {
-            Hide();
-            cadastroAluno = new CadastroAluno("U");
-            cadastroAluno.ShowDialog();
-            Show();
+            ButtonShow("I");
         }
 
         private void B_Deletar(object sender, RoutedEventArgs e) {
-
+            ButtonShow("D");
         }
 
         private void B_Modificar(object sender, RoutedEventArgs e) {
-
+            ButtonShow("U");
         }
 
         private void B_Mostrar(object sender, RoutedEventArgs e) {
+            ButtonShow("S");
+        }
 
+        private void ButtonShow(string mode) {
+            string type = CB_Table.Text;
+
+            if (type.Equals(alunos)) {
+                CadastroAluno cadastroAluno = new CadastroAluno(mode);
+                cadastroAluno.Show();
+            } else if (type.Equals(cidades)) {
+
+            } else if (type.Equals(cursos)) {
+
+            } else if (type.Equals(disciplinas)) {
+
+            } else if (type.Equals(regAcad)) {
+
+            } else if (type.Equals(regAcadDisc)) {
+
+            } else {
+
+            }
         }
     }
 }

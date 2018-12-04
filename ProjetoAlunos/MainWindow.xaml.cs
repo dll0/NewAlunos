@@ -24,7 +24,7 @@ namespace ProjetoAlunos {
             Oracle oracle = new Oracle();
             oracle.Connect();
 
-            Usuario usuario = new Usuario();
+            //Usuario usuario = new Usuario();
             //usuario.ShowDialog();
 
             TelaAlunos telaAlunos = new TelaAlunos();

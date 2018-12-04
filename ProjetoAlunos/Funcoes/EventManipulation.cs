@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 
 namespace ProjetoAlunos {
     class EventManipulation {
-        public void Validate(string gotOrLost, int length, TextBox box = null, PasswordBox passBox = null,
+        public void Validate(string gotOrLost, int length, bool allowNull = false, TextBox box = null, PasswordBox passBox = null,
                             Regex mask = null, bool showErrors = false, string[] common = null, string[] message = null) {
 
             if (box != null) {
@@ -43,8 +43,10 @@ namespace ProjetoAlunos {
                         }
                     }
 
-                    if (strNoSpace.Equals(String.Empty)) {
+                    if (strNoSpace.Equals(String.Empty) && !allowNull) {
                         box.Text = common[0];
+                    } else if (strNoSpace.Equals(String.Empty) && allowNull) {
+                        box.Text = String.Empty;
                     } else if (str.Length > length
                             && !equalsToCommon) {
                         MessageBox.Show($"{common[1]}{Environment.NewLine}{message[0]} '{str}' {message[1]}");
@@ -54,19 +56,19 @@ namespace ProjetoAlunos {
                     } else if (!onlyCharactersDefined
                             && !equalsToCommon) {
                         box.Text = common[2];
-                        int position = 0;
-                        List<string> changes = new List<string>();
-
-                        foreach (char letter in str) {
-                            position++;
-                            if (!mask.IsMatch(Convert.ToString(letter))) {
-                                changes.Add($"{Convert.ToString(position)}: {Convert.ToString(letter)}; ");
-                            }
-                        }
-
-                        string changesToDo = string.Join(" ", changes);
-
+                        
                         if (showErrors) {
+                            int position = 0;
+                            List<string> changes = new List<string>();
+
+                            foreach (char letter in str) {
+                                position++;
+                                if (!mask.IsMatch(Convert.ToString(letter))) {
+                                    changes.Add($"{Convert.ToString(position)}: {Convert.ToString(letter)}; ");
+                                }
+                            }
+
+                            string changesToDo = string.Join(" ", changes);
                             MessageBox.Show($"{message[0]} '{str}' {message[1]}" +
                                     $"{Environment.NewLine}" +
                                     $"Caracteres invalidos em suas posições:" +
