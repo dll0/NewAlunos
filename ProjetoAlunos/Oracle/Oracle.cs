@@ -95,6 +95,12 @@ namespace ProjetoAlunos {
 
             grid.ItemsSource = dt.DefaultView;
         }
+
+        public int lastId (string table, string id) {
+            object query = Query($"SELECT MAX({id}) FROM {table}", $"{id}");
+
+            return Convert.ToInt32(query);
+        }
     }
 }
 

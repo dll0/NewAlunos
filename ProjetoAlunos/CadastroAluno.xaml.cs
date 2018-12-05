@@ -51,6 +51,7 @@ namespace ProjetoAlunos {
             switch(mode) {
                 case "U":
                     modeString = "modificar";
+                    TB_ID.Text = oracle.lastId("aluno", "codigo").ToString();
                     break;
                 case "I":
                     modeString = "inserir";

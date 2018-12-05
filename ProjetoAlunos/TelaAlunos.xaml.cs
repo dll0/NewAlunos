@@ -18,7 +18,8 @@ namespace ProjetoAlunos {
     public partial class TelaAlunos : Window {
         Oracle oracle = new Oracle();
 
-        List<String> tables = new List<string>();
+        List<string> tables = new List<string>();
+        List<string> rows = new List<string>();
 
         string alunos = "Alunos";
         string cidades = "Cidades";
@@ -49,7 +50,7 @@ namespace ProjetoAlunos {
             CB_Table.ItemsSource = tables;
         }
 
-        void Bind(string type) {
+        void BindAndUpdate(string type) {
             string query = String.Empty;
             string text = CB_Table.SelectedItem.ToString();
 
@@ -100,7 +101,7 @@ namespace ProjetoAlunos {
                         "INNER JOIN disciplina c ON c.cod = a.cod_disciplina";
             } else {
                 query = "SELECT " +
-                            "a.cod, " +
+                            "a.cod codigo, " +
                             "a.codregacad||' - '||b.numero_matricula matricula, " +
                             "a.coddisciplina||' - '||c.nome disciplina, " +
                             "a.nota1, " +
@@ -118,43 +119,238 @@ namespace ProjetoAlunos {
         private void CB_Table_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             string text = CB_Table.SelectedItem.ToString();
 
-            Bind(text);
+            BindAndUpdate(text);
         }
 
         private void B_Inserir(object sender, RoutedEventArgs e) {
-            ButtonShow("I");
+            string type = CB_Table.Text;
+            string id = rows[0];
+
+            if (type.Equals(alunos)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM aluno WHERE codigo = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletado aluno {id}");
+                else
+                    MessageBox.Show("Erro, este aluno existe em outro cadastro!");
+
+                BindAndUpdate(alunos);
+            } else if (type.Equals(cidades)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM cidade WHERE codigo = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletada cidade {id}");
+                else
+                    MessageBox.Show("Erro, esta cidade existe em outro cadastro!");
+
+                BindAndUpdate(cidades);
+            } else if (type.Equals(cursos)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM curso WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletado curso {id}");
+                else
+                    MessageBox.Show("Erro, este curso existe em outro cadastro!");
+
+                BindAndUpdate(cursos);
+            } else if (type.Equals(disciplinas)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM disciplina WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletada disciplina {id}");
+                else
+                    MessageBox.Show("Erro, esta disciplina existe em outro cadastro!");
+
+                BindAndUpdate(disciplinas);
+            } else if (type.Equals(regAcad)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM registro_academico WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletado registro academico {id}");
+                else
+                    MessageBox.Show("Erro, este registro academico existe em outro cadastro!");
+
+                BindAndUpdate(regAcad);
+            } else if (type.Equals(regAcadDisc)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM registro_academico_disciplina WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletada registro academico disciplina {id}");
+                else
+                    MessageBox.Show("Erro!");
+
+                BindAndUpdate(regAcadDisc);
+            } else {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM nota WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletada nota {id}");
+                else
+                    MessageBox.Show("Erro");
+
+                BindAndUpdate("ELSE");
+            }
         }
 
         private void B_Deletar(object sender, RoutedEventArgs e) {
-            ButtonShow("D");
+            string type = CB_Table.Text;
+            string id = rows[0];
+
+            if (type.Equals(alunos)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM aluno WHERE codigo = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletado aluno {id}");
+                else
+                    MessageBox.Show("Erro, este aluno existe em outro cadastro!");
+
+                BindAndUpdate(alunos);
+            } else if (type.Equals(cidades)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM cidade WHERE codigo = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletada cidade {id}");
+                else
+                    MessageBox.Show("Erro, esta cidade existe em outro cadastro!");
+
+                BindAndUpdate(cidades);
+            } else if (type.Equals(cursos)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM curso WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletado curso {id}");
+                else
+                    MessageBox.Show("Erro, este curso existe em outro cadastro!");
+
+                BindAndUpdate(cursos);
+            } else if (type.Equals(disciplinas)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM disciplina WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletada disciplina {id}");
+                else
+                    MessageBox.Show("Erro, esta disciplina existe em outro cadastro!");
+
+                BindAndUpdate(disciplinas);
+            } else if (type.Equals(regAcad)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM registro_academico WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletado registro academico {id}");
+                else
+                    MessageBox.Show("Erro, este registro academico existe em outro cadastro!");
+
+                BindAndUpdate(regAcad);
+            } else if (type.Equals(regAcadDisc)) {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM registro_academico_disciplina WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletada registro academico disciplina {id}");
+                else
+                    MessageBox.Show("Erro!");
+
+                BindAndUpdate(regAcadDisc);
+            } else {
+                bool deleted = oracle.InsertOrUpdate($"DELETE FROM nota WHERE cod = {id}");
+
+                if (deleted)
+                    MessageBox.Show($"Deletada nota {id}");
+                else
+                    MessageBox.Show("Erro");
+
+                BindAndUpdate("ELSE");
+            }
         }
 
         private void B_Modificar(object sender, RoutedEventArgs e) {
-            ButtonShow("U");
+            //ButtonShow("U");
         }
 
-        private void B_Mostrar(object sender, RoutedEventArgs e) {
-            ButtonShow("S");
-        }
-
-        private void ButtonShow(string mode) {
+        private void MyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             string type = CB_Table.Text;
 
             if (type.Equals(alunos)) {
-                CadastroAluno cadastroAluno = new CadastroAluno(mode);
-                cadastroAluno.Show();
+                DataGrid gd = (DataGrid)sender;
+                DataRowView rowSelected = gd.SelectedItem as DataRowView;
+
+                rows.Clear();
+                if(rowSelected != null) {
+                    rows.Add(rowSelected["codigo"].ToString());
+                    rows.Add(rowSelected["nome"].ToString());
+                    rows.Add(rowSelected["sobrenome"].ToString());
+                    rows.Add(rowSelected["cidade"].ToString());
+                    rows.Add(rowSelected["nascimento"].ToString());
+                }
+                    
             } else if (type.Equals(cidades)) {
+                DataGrid gd = (DataGrid)sender;
+                DataRowView rowSelected = gd.SelectedItem as DataRowView;
 
+                rows.Clear();
+                if(rowSelected != null) {
+                    rows.Add(rowSelected["codigo"].ToString());
+                    rows.Add(rowSelected["nome"].ToString());
+                    rows.Add(rowSelected["estado"].ToString());
+                } 
             } else if (type.Equals(cursos)) {
+                DataGrid gd = (DataGrid)sender;
+                DataRowView rowSelected = gd.SelectedItem as DataRowView;
 
+                rows.Clear();
+                if (rowSelected != null) {
+                    rows.Add(rowSelected["codigo"].ToString());
+                    rows.Add(rowSelected["nome"].ToString());
+                    rows.Add(rowSelected["inicio"].ToString());
+                    rows.Add(rowSelected["carga"].ToString());
+                }
             } else if (type.Equals(disciplinas)) {
+                DataGrid gd = (DataGrid)sender;
+                DataRowView rowSelected = gd.SelectedItem as DataRowView;
 
+                rows.Clear();
+                if (rowSelected != null) {
+                    rows.Add(rowSelected["codigo"].ToString());
+                    rows.Add(rowSelected["nome"].ToString());
+                    rows.Add(rowSelected["valor"].ToString());
+                }
             } else if (type.Equals(regAcad)) {
+                DataGrid gd = (DataGrid)sender;
+                DataRowView rowSelected = gd.SelectedItem as DataRowView;
+
+                rows.Clear();
+
+                if (rowSelected != null) {
+                    rows.Add(rowSelected["codigo"].ToString());
+                    rows.Add(rowSelected["matricula"].ToString());
+                    rows.Add(rowSelected["nome"].ToString());
+                    rows.Add(rowSelected["curso"].ToString());
+                }
 
             } else if (type.Equals(regAcadDisc)) {
+                DataGrid gd = (DataGrid)sender;
+                DataRowView rowSelected = gd.SelectedItem as DataRowView;
 
+                rows.Clear();
+
+                if (rowSelected != null) {
+                    rows.Add(rowSelected["codigo"].ToString());
+                    rows.Add(rowSelected["matricula"].ToString());
+                    rows.Add(rowSelected["disciplina"].ToString());
+                }
             } else {
+                DataGrid gd = (DataGrid)sender;
+                DataRowView rowSelected = gd.SelectedItem as DataRowView;
 
+                rows.Clear();
+                if (rowSelected != null) {
+                    rows.Add(rowSelected["codigo"].ToString());
+                    rows.Add(rowSelected["matricula"].ToString());
+                    rows.Add(rowSelected["disciplina"].ToString());
+                    rows.Add(rowSelected["nota1"].ToString());
+                    rows.Add(rowSelected["nota2"].ToString());
+                    rows.Add(rowSelected["nota3"].ToString());
+                    rows.Add(rowSelected["media"].ToString());
+                }
             }
         }
     }

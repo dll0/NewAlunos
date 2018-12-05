@@ -13,30 +13,27 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="290"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0" Grid.Row="1">
-            <TextBlock Text="Carregar tabela:" Margin="3,0,3,2" HorizontalAlignment="Center"/>
-            <ComboBox Name="CB_Table" Margin="3,0,3,5" SelectionChanged="CB_Table_SelectionChanged"></ComboBox>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <ComboBox x:Name="CB_Table" Margin="3,0,3,5" SelectionChanged="CB_Table_SelectionChanged"/>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25"></RowDefinition>
-                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="85"></ColumnDefinition>
-                    <ColumnDefinition Width="85"></ColumnDefinition>
+                    <ColumnDefinition Width="85"/>
+                    <ColumnDefinition Width="85"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Row="0" Grid.Column="0" Margin="2" Click="B_Inserir">Inserir</Button>
-                <Button Grid.Row="0" Grid.Column="1" Margin="2" Click="B_Deletar">Deletar</Button>
-                <Button Grid.Row="1" Grid.Column="0" Margin="2" Click="B_Modificar">Modificar</Button>
-                <Button Grid.Row="1" Grid.Column="1" Margin="2" Click="B_Mostrar">Mostrar</Button>
+                <Button Grid.Row="0" Grid.Column="0" Margin="2" Click="B_Inserir" Content="Inserir"/>
+                <Button Grid.Row="0" Grid.Column="1" Margin="2" Click="B_Deletar" Content="Deletar"/>
+                <Button Grid.Row="1" Grid.Column="0" Margin="2" Click="B_Modificar" Content="Modificar"/>
             </Grid>
         </StackPanel>
-        <DataGrid Name="MyDataGrid" Grid.Column="1" Grid.Row="1"/>
+        <DataGrid Name="MyDataGrid" Grid.Column="1" Grid.Row="0" Margin="0,0,0,-30" SelectionChanged="MyDataGrid_SelectionChanged"/>
     </Grid>
 </Window>

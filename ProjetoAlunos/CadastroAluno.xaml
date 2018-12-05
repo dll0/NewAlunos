@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoAlunos"
         mc:Ignorable="d"
-        Title="Cadastrar Aluno" Height="210" Width="350" ResizeMode="NoResize" Icon="Arquivos/logo.png" WindowStartupLocation="CenterScreen">
+        Title="Cadastrar Aluno" Height="230" Width="350" ResizeMode="NoResize" Icon="Arquivos/logo.png" WindowStartupLocation="CenterScreen">
     <Grid Margin="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="110"></ColumnDefinition>
@@ -18,22 +18,25 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Nome" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-        <TextBlock Text="Sobrenome" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-        <TextBlock Text="Cidade" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-        <TextBlock Text="CPF" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-        <TextBlock Text="Data de Nascimento" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <TextBlock Text="ID" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <TextBlock Text="Nome" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <TextBlock Text="Sobrenome" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <TextBlock Text="Cidade" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <TextBlock Text="CPF" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <TextBlock Text="Data de Nascimento" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-        <TextBox Name="TB_Nome" GotFocus="GF_Nome"  LostFocus="LF_Nome" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="20" Width="213" Margin="5,0,0,0"/>
-        <TextBox Name="TB_Sobrenome" GotFocus="GF_Sobrenome" LostFocus="LF_Sobrenome"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="20" Width="213" Margin="5,0,0,0"/>
-        <ComboBox Name="CB_Cidade" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="20" Width="213" Margin="5,0,0,0"></ComboBox>
-        <TextBox Name="TB_CPF" GotFocus="GF_CPF" LostFocus="LF_CPF" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="20" Width="213" Margin="5,0,0,0"/>
-        <DatePicker Name="DP_Data" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="213" Margin="5,0,0,0"/>
+        <TextBox Name="TB_ID" GotFocus="GF_Nome"  LostFocus="LF_Nome" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="20" Width="30" Margin="5,0,0,0"/>
+        <TextBox Name="TB_Nome" GotFocus="GF_Nome"  LostFocus="LF_Nome" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="20" Width="213" Margin="5,0,0,0"/>
+        <TextBox Name="TB_Sobrenome" GotFocus="GF_Sobrenome" LostFocus="LF_Sobrenome"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="20" Width="213" Margin="5,0,0,0"/>
+        <ComboBox Name="CB_Cidade" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="20" Width="213" Margin="5,0,0,0"></ComboBox>
+        <TextBox Name="TB_CPF" GotFocus="GF_CPF" LostFocus="LF_CPF" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="20" Width="213" Margin="5,0,0,0"/>
+        <DatePicker Name="DP_Data" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="213" Margin="5,0,0,0"/>
 
-        <Button Name="B_Confirma" Grid.Column="1" Grid.Row="6" Margin="5" Width="85" HorizontalAlignment="Right" Content="undefined"/>
+        <Button Name="B_Confirma" Grid.Column="1" Grid.Row="7" Margin="5" Width="85" HorizontalAlignment="Right" Content="undefined"/>
     </Grid>
 </Window>
