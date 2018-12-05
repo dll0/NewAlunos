@@ -34,10 +34,7 @@ namespace ProjetoAlunos {
             oracle.Connect();
 
             MyDataGrid.RowHeaderWidth = 0;
-            MyDataGrid.CanUserAddRows = false;
             MyDataGrid.CanUserDeleteRows = false;
-            MyDataGrid.CanUserReorderColumns = false;
-            MyDataGrid.CanUserResizeColumns = false;
             MyDataGrid.CanUserSortColumns = false;
 
             tables.Add("Alunos");
@@ -123,73 +120,7 @@ namespace ProjetoAlunos {
         }
 
         private void B_Inserir(object sender, RoutedEventArgs e) {
-            string type = CB_Table.Text;
-            string id = rows[0];
 
-            if (type.Equals(alunos)) {
-                bool deleted = oracle.InsertOrUpdate($"DELETE FROM aluno WHERE codigo = {id}");
-
-                if (deleted)
-                    MessageBox.Show($"Deletado aluno {id}");
-                else
-                    MessageBox.Show("Erro, este aluno existe em outro cadastro!");
-
-                BindAndUpdate(alunos);
-            } else if (type.Equals(cidades)) {
-                bool deleted = oracle.InsertOrUpdate($"DELETE FROM cidade WHERE codigo = {id}");
-
-                if (deleted)
-                    MessageBox.Show($"Deletada cidade {id}");
-                else
-                    MessageBox.Show("Erro, esta cidade existe em outro cadastro!");
-
-                BindAndUpdate(cidades);
-            } else if (type.Equals(cursos)) {
-                bool deleted = oracle.InsertOrUpdate($"DELETE FROM curso WHERE cod = {id}");
-
-                if (deleted)
-                    MessageBox.Show($"Deletado curso {id}");
-                else
-                    MessageBox.Show("Erro, este curso existe em outro cadastro!");
-
-                BindAndUpdate(cursos);
-            } else if (type.Equals(disciplinas)) {
-                bool deleted = oracle.InsertOrUpdate($"DELETE FROM disciplina WHERE cod = {id}");
-
-                if (deleted)
-                    MessageBox.Show($"Deletada disciplina {id}");
-                else
-                    MessageBox.Show("Erro, esta disciplina existe em outro cadastro!");
-
-                BindAndUpdate(disciplinas);
-            } else if (type.Equals(regAcad)) {
-                bool deleted = oracle.InsertOrUpdate($"DELETE FROM registro_academico WHERE cod = {id}");
-
-                if (deleted)
-                    MessageBox.Show($"Deletado registro academico {id}");
-                else
-                    MessageBox.Show("Erro, este registro academico existe em outro cadastro!");
-
-                BindAndUpdate(regAcad);
-            } else if (type.Equals(regAcadDisc)) {
-                bool deleted = oracle.InsertOrUpdate($"DELETE FROM registro_academico_disciplina WHERE cod = {id}");
-
-                if (deleted)
-                    MessageBox.Show($"Deletada registro academico disciplina {id}");
-                else
-                    MessageBox.Show("Erro!");
-
-                BindAndUpdate(regAcadDisc);
-            } else {
-                bool deleted = oracle.InsertOrUpdate($"DELETE FROM nota WHERE cod = {id}");
-
-                if (deleted)
-                    MessageBox.Show($"Deletada nota {id}");
-                else
-                    MessageBox.Show("Erro");
-
-                BindAndUpdate("ELSE");
-            }
         }
 
         private void B_Deletar(object sender, RoutedEventArgs e) {
@@ -263,7 +194,7 @@ namespace ProjetoAlunos {
         }
 
         private void B_Modificar(object sender, RoutedEventArgs e) {
-            //ButtonShow("U");
+            
         }
 
         private void MyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) {

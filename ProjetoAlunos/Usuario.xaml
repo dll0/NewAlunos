@@ -25,6 +25,6 @@
         <TextBox Name="tbUser" Grid.Column="1" Grid.Row="0" Margin="7,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="175" GotFocus="tbUser_GotFocus" LostFocus="tbUser_LostFocus" ToolTip="MAX: 8 CARACTERES"></TextBox>
         <PasswordBox Name="tbPass" Grid.Column="1" Grid.Row="1" Margin="7,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="175" LostFocus="tbPass_LostFocus" ToolTip="MAX: 5 NUMEROS"></PasswordBox>
 
-        <Button Grid.Column="1" Grid.Row="2" Width="75" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,22,0" Content="Registrar" Click="bRegister_Click" />
+        <Button Grid.Column="1" Grid.Row="2" Width="113" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,22,5" Content="Registrar/Login" Click="bRegister_Click" />
     </Grid>
 </Window>

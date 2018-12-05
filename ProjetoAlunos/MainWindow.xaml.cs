@@ -14,6 +14,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.VisualBasic;
 
+/*
+    Não consegui concluir o trabalho, por ser muito extenso
+    Se clicar na imagem, tem a opção de inserir dados padrão
+    Com eles da pra testar a funcionalidade de excluir na 
+    tabela de registro_academico_disciplina.
+    Tela de login apenas registra, não valida, fechar ela
+    para abrir a tela de pesquisa
+*/
+
 namespace ProjetoAlunos {
     public partial class MainWindow : Window {
         public MainWindow() {
@@ -24,8 +33,8 @@ namespace ProjetoAlunos {
             Oracle oracle = new Oracle();
             oracle.Connect();
 
-            //Usuario usuario = new Usuario();
-            //usuario.ShowDialog();
+            Usuario usuario = new Usuario();
+            usuario.ShowDialog();
 
             TelaAlunos telaAlunos = new TelaAlunos();
             telaAlunos.ShowDialog();
